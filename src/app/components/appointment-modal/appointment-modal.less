@@ -1,0 +1,162 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+    z-index: 2000;
+    .flex-center();
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+
+    &.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+.modal-card {
+    background: @secondary-color;
+    width: 90%;
+    max-width: 580px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    border: 1px solid @accent-color;
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+
+    @media (max-width: @screen-sm) {
+        padding: 1.5rem;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    background: transparent;
+    border: none;
+    color: @white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    .subtitle {
+        color: @accent-color;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+    }
+
+    .title {
+        font-family: @font-heading;
+        font-size: 1.8rem;
+        color: @white;
+        margin-top: 0.25rem;
+    }
+}
+
+.error-alert {
+    background: rgba(220, 53, 69, 0.2);
+    border: 1px solid #dc3545;
+    color: #ff6b6b;
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+
+        @media (max-width: @screen-sm) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+
+        label {
+            color: @text-light;
+            font-size: 0.82rem;
+            letter-spacing: 0.5px;
+        }
+
+        input,
+        select,
+        textarea {
+            background: @primary-color;
+            border: 1px solid @border-dark;
+            color: @white;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-family: @font-body;
+
+            &:focus {
+                outline: none;
+                border-color: @accent-color;
+            }
+        }
+    }
+
+    .btn-confirm {
+        .btn-primary();
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+.modal-success {
+    text-align: center;
+    padding: 2rem 0;
+
+    .check-icon {
+        width: 64px;
+        height: 64px;
+        background: @accent-color;
+        color: @primary-color;
+        border-radius: 50%;
+        .flex-center();
+        font-size: 2rem;
+        margin: 0 auto 1.5rem;
+    }
+
+    h3 {
+        font-family: @font-heading;
+        color: @white;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        color: @text-light;
+        line-height: 1.6;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .sub-note {
+        color: @muted-text;
+        font-size: 0.85rem;
+        margin-bottom: 2rem;
+    }
+}

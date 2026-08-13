@@ -1,0 +1,36 @@
+<section id="services" class="services-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="subtitle">PREMIUM MENU</span>
+            <h2 class="title">Our Grooming Services</h2>
+            <div class="divider"></div>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="category-tabs">
+            <button *ngFor="let cat of categories" [class.active]="selectedCategory === cat.key"
+                (click)="filterCategory(cat.key)">
+                {{ cat.label }}
+            </button>
+        </div>
+
+        <!-- Services Cards Grid -->
+        <div class="services-grid">
+            <div *ngFor="let item of filteredServices" class="service-card">
+                <div class="card-img" [style.backgroundImage]="'url(' + item.image + ')'">
+                    <span class="duration-badge">{{ item.duration }}</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="service-title">{{ item.name }}</h3>
+                        <span class="price">₹{{ item.price }}</span>
+                    </div>
+                    <p class="service-desc">{{ item.description }}</p>
+                    <button class="btn-book-service" (click)="onBookService(item.id)">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

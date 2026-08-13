@@ -1,0 +1,140 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.hero-carousel {
+    position: relative;
+    height: 100vh;
+    min-height: 650px;
+    overflow: hidden;
+    background-color: @bg-dark;
+}
+
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    background-size: cover;
+    background-position: center;
+    .flex-center();
+    text-align: center;
+
+    &.active {
+        opacity: 1;
+        z-index: 1;
+    }
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 0 1.5rem;
+
+    .hero-tag {
+        color: @accent-color;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .hero-title {
+        font-family: @font-heading;
+        font-size: 4rem;
+        color: @white;
+        line-height: 1.1;
+        margin-bottom: 1.25rem;
+
+        @media (max-width: @screen-md) {
+            font-size: 2.5rem;
+        }
+    }
+
+    .hero-desc {
+        color: @text-light;
+        font-size: 1.15rem;
+        margin-bottom: 2.5rem;
+        font-weight: 300;
+
+        @media (max-width: @screen-md) {
+            font-size: 1rem;
+        }
+    }
+
+    .hero-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1.25rem;
+
+        @media (max-width: @screen-sm) {
+            flex-direction: column;
+        }
+
+        .btn-primary-hero {
+            .btn-primary();
+            padding: 1rem 2rem;
+        }
+
+        .btn-secondary-hero {
+            .btn-outline();
+            padding: 1rem 2rem;
+        }
+    }
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: @white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    .flex-center();
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: @accent-color;
+        color: @primary-color;
+    }
+
+    &.prev {
+        left: 2rem;
+    }
+
+    &.next {
+        right: 2rem;
+    }
+
+    @media (max-width: @screen-md) {
+        display: none;
+    }
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 0.75rem;
+
+    .indicator {
+        width: 32px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &.active {
+            background: @accent-color;
+            width: 48px;
+        }
+    }
+}

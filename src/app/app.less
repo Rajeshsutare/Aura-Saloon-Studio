@@ -1,0 +1,516 @@
+@import './styles/variables.less';
+@import './styles/mixins.less';
+
+.app-wrapper {
+    background-color: @bg-dark;
+    font-family: @font-body;
+    color: @text-light;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+// 1. About Section
+.about-section {
+    padding: 7rem 0;
+    background: @primary-color;
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+
+        @media (max-width: @screen-lg) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .about-image-wrapper {
+        position: relative;
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid @border-dark;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .badge-experience {
+            position: absolute;
+            bottom: -1.5rem;
+            right: -1.5rem;
+            background: @accent-color;
+            color: @primary-color;
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .num {
+                font-size: 2rem;
+                font-weight: 800;
+                font-family: @font-heading;
+            }
+
+            .txt {
+                font-size: 0.75rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+    .about-content {
+        .subtitle {
+            color: @accent-color;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .title {
+            font-family: @font-heading;
+            font-size: 2.4rem;
+            color: @white;
+            margin: 0.5rem 0 1.5rem;
+        }
+
+        .description {
+            color: @muted-text;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+
+            .stat-card {
+                h3 {
+                    font-family: @font-heading;
+                    font-size: 1.8rem;
+                    color: @accent-color;
+                }
+
+                p {
+                    font-size: 0.85rem;
+                    color: @muted-text;
+                }
+            }
+        }
+    }
+}
+
+// 2. Packages Section
+.packages-section {
+    padding: 6rem 0;
+    background: @secondary-color;
+
+    .packages-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .package-card {
+        background: @primary-color;
+        border: 1px solid @border-dark;
+        padding: 2.5rem;
+        border-radius: 8px;
+        position: relative;
+        .card-hover();
+        display: flex;
+        flex-direction: column;
+
+        &.popular {
+            border-color: @accent-color;
+            transform: scale(1.03);
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: 0;
+            right: 5rem;
+            transform: translateY(-50%);
+            background: @accent-color;
+            color: @primary-color;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        .pkg-title {
+            font-family: @font-heading;
+            font-size: 1.5rem;
+            color: @white;
+            margin-bottom: 0.5rem;
+        }
+
+        .pkg-sub {
+            color: @muted-text;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pkg-price {
+            margin-bottom: 1.5rem;
+
+            .currency {
+                color: @accent-color;
+                font-size: 1.2rem;
+            }
+
+            .amount {
+                color: @white;
+                font-size: 2.5rem;
+                font-weight: 700;
+                font-family: @font-heading;
+            }
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+
+            li {
+                color: @text-light;
+                font-size: 0.9rem;
+                margin-bottom: 0.75rem;
+            }
+        }
+
+        .btn-package {
+            .btn-primary();
+            width: 100%;
+        }
+    }
+}
+
+// 3. Gallery Section
+.gallery-section {
+    padding: 6rem 0;
+    background: @bg-dark;
+
+    .gallery-filters {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+
+        button {
+            background: transparent;
+            border: none;
+            color: @muted-text;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+
+            &.active,
+            &:hover {
+                color: @accent-color;
+                border-bottom: 2px solid @accent-color;
+            }
+        }
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+
+        .gallery-item {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            height: 260px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .gallery-overlay {
+                position: absolute;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.7);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                .flex-center();
+
+                h4 {
+                    color: @accent-color;
+                    font-family: @font-heading;
+                    font-size: 1.2rem;
+                }
+            }
+
+            &:hover {
+                img {
+                    transform: scale(1.1);
+                }
+
+                .gallery-overlay {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// 4. Testimonials Section
+.testimonials-section {
+    padding: 6rem 0;
+    background: @primary-color;
+
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .testimonial-card {
+        background: @secondary-color;
+        padding: 2rem;
+        border-radius: 8px;
+        border: 1px solid @border-dark;
+
+        .stars {
+            color: @accent-color;
+            margin-bottom: 1rem;
+        }
+
+        .comment {
+            color: @text-light;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            img {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            .name {
+                font-weight: 600;
+                color: @white;
+            }
+
+            .role {
+                font-size: 0.8rem;
+                color: @muted-text;
+            }
+        }
+    }
+}
+
+// 5. Founder Section
+.founder-section {
+    padding: 6rem 0;
+    background: @secondary-color;
+
+    .founder-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 4rem;
+        align-items: center;
+
+        @media (max-width: @screen-md) {
+            grid-template-columns: 1fr;
+        }
+
+        .founder-img img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid @border-dark;
+        }
+
+        .founder-content {
+            .subtitle {
+                color: @accent-color;
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+
+            .title {
+                font-family: @font-heading;
+                font-size: 2.5rem;
+                color: @white;
+            }
+
+            .designation {
+                color: @muted-text;
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .quote {
+                border-left: 3px solid @accent-color;
+                padding-left: 1rem;
+                font-style: italic;
+                color: @accent-color;
+                margin: 1.5rem 0;
+            }
+
+            .founder-credentials {
+                display: flex;
+                gap: 2rem;
+                color: @white;
+            }
+        }
+    }
+}
+
+// 6. Location Section
+.location-section {
+    padding: 6rem 0;
+    background: @bg-dark;
+
+    .location-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 2rem;
+
+        @media (max-width: @screen-md) {
+            grid-template-columns: 1fr;
+        }
+
+        .location-card {
+            background: @secondary-color;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid @border-dark;
+
+            h3 {
+                font-family: @font-heading;
+                color: @white;
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+            }
+
+            .addr {
+                color: @muted-text;
+                margin-bottom: 1.5rem;
+                line-height: 1.5;
+            }
+
+            .detail-row {
+                margin-bottom: 0.75rem;
+                color: @text-light;
+
+                strong {
+                    color: @accent-color;
+                    margin-right: 0.5rem;
+                }
+            }
+
+            .btn-directions {
+                .btn-outline();
+                margin-top: 1.5rem;
+            }
+        }
+
+        .map-wrapper {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid @border-dark;
+            cursor: pointer;
+        }
+    }
+}
+
+// 7. Footer
+.site-footer {
+    background: #090909;
+    padding: 4rem 0 2rem;
+    border-top: 1px solid @border-dark;
+
+    .footer-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+
+        @media (max-width: @screen-md) {
+            grid-template-columns: 1fr;
+        }
+
+        .footer-logo {
+            font-family: @font-heading;
+            color: @white;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+
+            a {
+                color: @accent-color;
+                text-decoration: none;
+            }
+        }
+
+        .footer-col h4 {
+            color: @white;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                margin-bottom: 0.6rem;
+
+                a {
+                    color: @muted-text;
+                    cursor: pointer;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: @accent-color;
+                    }
+                }
+            }
+        }
+
+        .footer-col p {
+            color: @muted-text;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .footer-bottom {
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 2rem;
+        color: @muted-text;
+        font-size: 0.85rem;
+    }
+}

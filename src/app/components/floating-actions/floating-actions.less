@@ -1,0 +1,57 @@
+@import '../../styles/variables.less';
+@import '../../styles/mixins.less';
+
+.floating-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn-floating {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    .flex-center();
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.back-to-top {
+    background: @secondary-color;
+    color: @accent-color;
+    border: 1px solid @accent-color;
+    font-size: 1.4rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+
+    &.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    &:hover {
+        background: @accent-color;
+        color: @primary-color;
+    }
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: @white;
+
+    &:hover {
+        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    }
+}

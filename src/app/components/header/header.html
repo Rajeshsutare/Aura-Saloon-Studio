@@ -1,0 +1,41 @@
+<header class="navbar" [class.scrolled]="isScrolled">
+    <div class="nav-container">
+        <a class="logo" (click)="scrollToSection('hero')">
+            <span class="logo-text">{{ salonInfo.name }}</span>
+            <span class="logo-sub">GROOMING STUDIO</span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <nav class="desktop-nav">
+            <a *ngFor="let link of navLinks" (click)="scrollToSection(link.id)">
+                {{ link.label }}
+            </a>
+        </nav>
+
+        <div class="header-cta">
+            <button class="btn-book" (click)="triggerBooking()">Book Appointment</button>
+            <button class="hamburger" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen"
+                aria-label="Toggle Navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" [class.open]="isMobileMenuOpen">
+        <div class="drawer-header">
+            <span class="drawer-title">{{ salonInfo.name }}</span>
+            <button class="close-btn" (click)="toggleMobileMenu()">&times;</button>
+        </div>
+        <div class="drawer-links">
+            <a *ngFor="let link of navLinks" (click)="scrollToSection(link.id)">
+                {{ link.label }}
+            </a>
+            <button class="btn-book drawer-cta" (click)="triggerBooking()">
+                Book Appointment
+            </button>
+        </div>
+    </div>
+</header>

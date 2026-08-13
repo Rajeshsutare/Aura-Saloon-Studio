@@ -1,0 +1,25 @@
+<section id="hero" class="hero-carousel" (mouseenter)="stopAutoplay()" (mouseleave)="startAutoplay()">
+    <div *ngFor="let slide of slides; let i = index" class="carousel-slide" [class.active]="i === currentSlide"
+        [style.backgroundImage]="'linear-gradient(rgba(15,15,15,0.7), rgba(15,15,15,0.75)), url(' + slide.image + ')'">
+
+        <div class="hero-content">
+            <span class="hero-tag">AURA GROOMING EXPERIENCE</span>
+            <h1 class="hero-title">{{ slide.title }}</h1>
+            <p class="hero-desc">"{{ slide.description }}"</p>
+            <div class="hero-actions">
+                <button class="btn-primary-hero" (click)="onPrimaryClick()">{{ slide.primaryCta }}</button>
+                <button class="btn-secondary-hero" (click)="scrollTo('services')">{{ slide.secondaryCta }}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carousel Controls -->
+    <button class="carousel-arrow prev" (click)="prevSlide()" aria-label="Previous Slide">&#10094;</button>
+    <button class="carousel-arrow next" (click)="nextSlide()" aria-label="Next Slide">&#10095;</button>
+
+    <div class="carousel-indicators">
+        <span *ngFor="let slide of slides; let i = index" class="indicator" [class.active]="i === currentSlide"
+            (click)="goToSlide(i)">
+        </span>
+    </div>
+</section>
