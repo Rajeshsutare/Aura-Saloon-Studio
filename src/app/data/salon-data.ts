@@ -3,9 +3,9 @@ import { SalonInfo, ServiceItem, GroomPackage, Testimonial, GalleryItem } from '
 export const SALON_INFO: SalonInfo = {
     name: 'AURA GENTLEMEN',
     tagline: 'Timeless Style Meets Modern Grooming',
-    phone: '+919876543210',
-    displayPhone: '+91 98765 43210',
-    whatsappNumber: '919876543210',
+    phone: '+918080387349',
+    displayPhone: '+91 8080387349',
+    whatsappNumber: '918080387349',
     email: 'concierge@auragentlemen.com',
     address: 'Taroda Kh., Dhanvantri Colony, Waman Nagar, Nanded, Maharashtra 431605',
     city: 'Pune, Maharashtra 411001',
@@ -21,7 +21,7 @@ export const SALON_INFO: SalonInfo = {
         instagram: 'https://instagram.com',
         facebook: 'https://facebook.com',
         youtube: 'https://youtube.com',
-        whatsapp: 'https://wa.me/919876543210'
+        whatsapp: 'https://wa.me/918080387349'
     }
 };
 
